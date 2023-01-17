@@ -1,0 +1,21 @@
+USE [tea-picker-db]
+GO
+
+/****** Object:  Table [dbo].[Tea]    Script Date: 17/01/2023 14:37:13 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Tea](
+	[TeaId] [int] IDENTITY(1,1) NOT NULL,
+	[TeaName] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_Tea] PRIMARY KEY CLUSTERED 
+(
+	[TeaId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+

@@ -4,8 +4,35 @@
     ViewBag.Title = "Home Page";
 }
 
-<script src="~/Scripts/jquery-3.6.3.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnAddToList").click(function () {
+            AddToTheTeaMakerList();
+        });
+    });
+
+    function AddToTheTeaMakerList() {
+        var tblTeaMakerList = $('#tblTeaMakerList');
+        var PersonId = $('#Person').val();
+        var PersonName = $('#Person option:selected').text();
+        var TeaType = $('#Tea option:selected').text();
+
+        var TeaMakerList = "<tr><td hidden> " + PersonId + "</td><td>"
+            + PersonName + "</td><td>" +
+            TeaType + "</td><td>" +
+            "<input type='button' value='Remove' name='remove' class='btn btn-danger' onclick='RemoveItem(this)'/>" + "</td></tr>";
+
+        tblTeaMakerList.append(TeaMakerList);
+    }
+
+    function RemoveItem(itemId) {
+        $(itemId).closest('tr').remove();
+    }
+
+</script>
 
 <div class="jumbotron">
     <h2 style="color: #56002a !important;">The Adam Matthew Tea Round Picker</h2>
@@ -15,18 +42,8 @@
 
 <fieldset>
     <legend>
-        Automatically Generated Tea Picker : @ViewBag.MyString
+        Add a person and their choice of tea then randomize.
     </legend>
-</fieldset>
-
-<fieldset>
-    <legend>
-        Manually Generated Tea Picker
-    </legend>
-
-    <h4>
-        Add Tea Maker and their preferred choice to the table below and then randomize.
-    </h4>
 
     <div class="container">
         <div class="row">
@@ -54,11 +71,14 @@
         </div>
 
         <div class="row">
-            <table style="width: 100%" id="tblTeaMakerList">
+            <table style="width: 100%; margin-top:50px;" id="tblTeaMakerList">
                 <thead>
                     <tr>
+                        @*<th hidden ="hidden">
+                                Teamaker Id
+                            </th>*@
                         <th hidden="hidden">
-                            Teamaker Id
+                            Person Id
                         </th>
                         <th>
                             Person Name
@@ -74,6 +94,13 @@
             </table>
         </div>
 
+        <div class="row">
+            <div class="mt-3" style="float:right">
+                <input type="button" value="Randomize" style="margin-top: 23px;" name="Randomize" id="btnRandomize" class="btn btn-success" />
+
+            </div>
+        </div>
+
     </div>
 </fieldset>
 
@@ -81,19 +108,26 @@
     <legend>
         Todays Tea Picker (Manual) : Test
     </legend>
+    <legend>
+        Todays Tea Picker (Automatic) : @ViewBag.MyString
+    </legend>
 </fieldset>
+
+<script>
+
+</script>
 
 
 @*<fieldset>
-    <legend>
-        Yesterdays Tea Pickers
-    </legend>
-</fieldset>
+        <legend>
+            Yesterdays Tea Pickers
+        </legend>
+    </fieldset>
 
-<fieldset>
-    <legend>
-        Teamaker HiScores
-    </legend>
-</fieldset>*@
+    <fieldset>
+        <legend>
+            Teamaker HiScores
+        </legend>
+    </fieldset>*@
 
 

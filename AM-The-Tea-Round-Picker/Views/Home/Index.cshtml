@@ -1,0 +1,99 @@
+﻿@model Tuple<IEnumerable<SelectListItem>, IEnumerable<SelectListItem>>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<script src="~/Scripts/jquery-3.6.3.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<div class="jumbotron">
+    <h2 style="color: #56002a !important;">The Adam Matthew Tea Round Picker</h2>
+    <p class="lead">Who is going to be making the tea today?</p>
+    <img src="~/Images/tea-pot.png" / style="border-radius: 20px;">
+</div>
+
+<fieldset>
+    <legend>
+        Automatically Generated Tea Picker : @ViewBag.MyString
+    </legend>
+</fieldset>
+
+<fieldset>
+    <legend>
+        Manually Generated Tea Picker
+    </legend>
+
+    <h4>
+        Add Tea Maker and their preferred choice to the table below and then randomize.
+    </h4>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    Person Name:
+                    @Html.DropDownList("Person", new SelectList(Model.Item1, "Value", "Text"),
+                    new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    Tea Type:
+                    @Html.DropDownList("Tea", new SelectList(Model.Item2, "Value", "Text"),
+                    new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="button" value="Add To List" style="margin-top: 23px;" name="AddToList" id="btnAddToList" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <table style="width: 100%" id="tblTeaMakerList">
+                <thead>
+                    <tr>
+                        <th hidden="hidden">
+                            Teamaker Id
+                        </th>
+                        <th>
+                            Person Name
+                        </th>
+                        <th>
+                            Tea Type
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+    </div>
+</fieldset>
+
+<fieldset>
+    <legend>
+        Todays Tea Picker (Manual) : Test
+    </legend>
+</fieldset>
+
+
+@*<fieldset>
+    <legend>
+        Yesterdays Tea Pickers
+    </legend>
+</fieldset>
+
+<fieldset>
+    <legend>
+        Teamaker HiScores
+    </legend>
+</fieldset>*@
+
+

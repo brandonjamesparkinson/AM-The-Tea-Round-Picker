@@ -53,6 +53,9 @@
     <Compile Include="ControllerTests\PersonControllerTest.cs" />
     <Compile Include="ControllerTests\TeaControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryTests\PersonRepositoryTest.cs" />
+    <Compile Include="RepositoryTests\TeaMakerRepositoryTest.cs" />
+    <Compile Include="RepositoryTests\TeaRepositoryTest.cs" />
     <Compile Include="ViewTests\HomeViewTest.cs" />
     <Compile Include="ViewTests\PersonViewTest.cs" />
     <Compile Include="ViewTests\TeaViewTest.cs" />
@@ -60,9 +63,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="RepositoryTests\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

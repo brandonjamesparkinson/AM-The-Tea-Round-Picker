@@ -18,7 +18,8 @@ namespace AM_The_Tea_Round_Picker.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var tea = objTeaPickerDbEntities.Teas;
+            return View(tea);
         }
 
         public ActionResult CreateTea(Tea model)

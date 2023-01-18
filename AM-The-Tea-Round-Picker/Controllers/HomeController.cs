@@ -30,21 +30,27 @@ namespace AM_The_Tea_Round_Picker.Controllers
             var objMultipleModels = new Tuple<IEnumerable<SelectListItem>, IEnumerable<SelectListItem>>
                 (objPersonRepository.GetAllPeople(), objTeaRepository.GetAllTeaType());
 
-            ViewBag.MyString = RandomTeaMaker();
+            //ViewBag.MyString = RandomTeaMaker();
 
             return View(objMultipleModels);
         }
 
-        public string RandomTeaMaker()
-        {
-            PersonRepository objPersonRepository = new PersonRepository();
-            var random = new Random();
+        //public string RandomTeaMaker()
+        //{
+        //    PersonRepository objPersonRepository = new PersonRepository();
+        //    var random = new Random();
+        //    var potentialTeaMakers = objPersonRepository.GetAllPeople();
+        //    string teaMaker = string.Empty;
 
-            var potentialTeaMakers = objPersonRepository.GetAllPeople();
-            int randomTeaMakerId = random.Next(1, potentialTeaMakers.Count());
-            string teaMaker = objPersonRepository.GetPerson(randomTeaMakerId);
 
-            return teaMaker;
-        }
+        //    int index = random.Next(0, potentialTeaMakers);
+        //    teaMaker = objPersonRepository.GetPerson(index);
+
+        //    //var randomTeaMakerId = random.Next(0, potentialTeaMakers.Value);
+
+        //    //string teaMaker = objPersonRepository.GetPerson(randomTeaMakerId);
+
+        //    return teaMaker;
+        //}
     }
 }

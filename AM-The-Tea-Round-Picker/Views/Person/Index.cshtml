@@ -1,6 +1,7 @@
-﻿
+﻿@model IEnumerable<AM_The_Tea_Round_Picker.Models.Person>
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Person";
 }
 
 <div class="jumbotron">
@@ -9,3 +10,19 @@
     @*<img src="~/Images/tea-pot.png" / style="border-radius: 20px;">*@
 </div>
 
+<a href="@Url.Action("Create", "Person")" class="btn btn-primary">Add Person</a>
+<a href="@Url.Action("Delete", "Person")" class="btn btn-danger">Remove Person</a>
+
+<table class="table table-bordered">
+    <tr>
+        <th class="table">
+            Person
+        </th>
+    </tr>
+    @foreach (var person in Model)
+    {
+        <tr style="border: 1px solid;">
+            <td>@person.PersonName</td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,25 @@
+﻿@model AM_The_Tea_Round_Picker.Models.Person
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<div class="jumbotron">
+    <h2 style="color: #56002a !important;">Add a Person</h2>
+</div>
+
+<fieldset>
+    <legend>
+        Add a person to the roster.
+    </legend>
+</fieldset>
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.PersonName)
+        @Html.EditorFor(model => model.PersonName)
+    </div>
+    <input type="submit" value="Add" class="btn btn-primary" />
+}

@@ -1,7 +1,7 @@
 ﻿@model Tuple<IEnumerable<SelectListItem>, IEnumerable<SelectListItem>>
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Tea Picker";
 }
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
@@ -10,8 +10,18 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#btnAddToList").click(function () {
+            var PersonId = $('#Person').val();
+            if ($('#tblTeaMakerList tr:contains("' + PersonId + '")').length) {
+                alert("That person is already in the list!")
+            }
+            else {
+                AddToTheTeaMakerList();
+            }
+        });
 
-            AddToTheTeaMakerList();
+        $("#btnConfirm").click(function () {
+            console.log("Confirm button clicked")
+            ConfirmTeaMaker();
         });
     });
 
@@ -27,6 +37,22 @@
             "<input type='button' value='Remove' name='remove' class='btn btn-danger' onclick='RemoveItem(this)'/>" + "</td></tr>";
 
         tblTeaMakerList.append(TeaMakerList);
+    }
+
+    function ConfirmTeaMaker() {
+        var personNames = [];
+        $('#tblTeaMakerList tr').each(function () {
+            // Get the value of the personName column and push it into the array
+            personNames.push($(this).find('td:nth-child(2)').text()); // get 2nd td element
+        });
+
+        // Generate a random number between 0 and the length of the array
+        var randomIndex = Math.floor(Math.random() * personNames.length);
+
+        // Get the random person name from the array
+        var randomName = personNames[randomIndex];
+
+        $("#txtTeaPicker").val(randomName);
     }
 
     function RemoveItem(itemId) {
@@ -72,9 +98,9 @@
         </div>
 
         <div class="row">
-            <table style="width: 100%; margin-top:50px; border: 1px solid;" id="tblTeaMakerList">
-                <thead style="border: 1px solid;">
-                    <tr style="border: 1px solid;">
+            <table class="table table-hover" id="tblTeaMakerList">
+                <thead class="thead-dark">
+                    <tr>
                         @*<th hidden ="hidden">
                                 Teamaker Id
                             </th>*@
@@ -97,8 +123,7 @@
 
         <div class="row">
             <div class="mt-3" style="float:right">
-                <input type="button" value="Randomize" style="margin-top: 23px;" name="Randomize" id="btnRandomize" class="btn btn-success" />
-
+                <input type="button" value="Confirm" style="margin-top: 23px;" name="Confirm" id="btnConfirm" class="btn btn-success" />
             </div>
         </div>
 
@@ -106,27 +131,16 @@
 </fieldset>
 
 <fieldset>
-    <legend>
-        Todays Tea Picker (Manual) : Test
-    </legend>
-    <legend>
-        Todays Tea Picker (Automatic) : @ViewBag.MyString
-    </legend>
-</fieldset>
 
-<fieldset>
-    <legend>
-        Flip a coin based on the above two choices
-    </legend>
-    <div class="row">
-        <div class="mt-3" style="float:right">
-            <input type="button" value="Randomize" style="margin-top: 23px;" name="Randomize" id="btnRandomize" class="btn btn-success" />
-
-        </div>
+    <div class="col-md-4">
+        Todays tea picker:
+        <input type="text" value="" name="teaPicker" readonly="readonly" id="txtTeaPicker" class="form-control" />
     </div>
-    <legend>
-        Todays Tea Picker is:
-    </legend>
+
+    <div class="col-md-4">
+        Previous tea picker:
+        <input type="text" value="" name="previousTeaPicker" readonly="readonly" id="txtPreviousTeaPicker" class="form-control" />
+    </div>
 </fieldset>
 
 <script>
@@ -135,15 +149,35 @@
 
 
 @*<fieldset>
-        <legend>
-            Yesterdays Tea Pickers
-        </legend>
-    </fieldset>
+    <legend>
+        Yesterdays Tea Pickers
+    </legend>
+</fieldset>*@
 
-    <fieldset>
-        <legend>
-            Teamaker HiScores
-        </legend>
-    </fieldset>*@
+<!--<fieldset>
+    <legend>
+        Teamaker HiScores
+    </legend>
+    <div class="row">
+        <table style="width: 100%; margin-top:50px; border: 1px solid;" id="tblHiScores">
+            <thead style="border: 1px solid;">
+                <tr style="border: 1px solid;">-->
+                    @*<th hidden ="hidden">
+                            Teamaker Id
+                        </th>*@
+                    <!--<th hidden="hidden">
+                        Person Id
+                    </th>
+                    <th>
+                        Person Name
+                    </th>
+                    <th>
+                        Teamaker Count
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</fieldset>-->
 
 

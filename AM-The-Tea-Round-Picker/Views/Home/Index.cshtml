@@ -10,6 +10,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#btnAddToList").click(function () {
+
             AddToTheTeaMakerList();
         });
     });
@@ -37,7 +38,7 @@
 <div class="jumbotron">
     <h2 style="color: #56002a !important;">The Adam Matthew Tea Round Picker</h2>
     <p class="lead">Who is going to be making the tea today?</p>
-    <img src="~/Images/tea-pot.png" / style="border-radius: 20px;">
+    @*<img src="~/Images/tea-pot.png" / style="border-radius: 20px;">*@
 </div>
 
 <fieldset>
@@ -71,9 +72,9 @@
         </div>
 
         <div class="row">
-            <table style="width: 100%; margin-top:50px;" id="tblTeaMakerList">
-                <thead>
-                    <tr>
+            <table style="width: 100%; margin-top:50px; border: 1px solid;" id="tblTeaMakerList">
+                <thead style="border: 1px solid;">
+                    <tr style="border: 1px solid;">
                         @*<th hidden ="hidden">
                                 Teamaker Id
                             </th>*@
@@ -110,6 +111,21 @@
     </legend>
     <legend>
         Todays Tea Picker (Automatic) : @ViewBag.MyString
+    </legend>
+</fieldset>
+
+<fieldset>
+    <legend>
+        Flip a coin based on the above two choices
+    </legend>
+    <div class="row">
+        <div class="mt-3" style="float:right">
+            <input type="button" value="Randomize" style="margin-top: 23px;" name="Randomize" id="btnRandomize" class="btn btn-success" />
+
+        </div>
+    </div>
+    <legend>
+        Todays Tea Picker is:
     </legend>
 </fieldset>
 

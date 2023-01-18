@@ -31,5 +31,18 @@ namespace AM_The_Tea_Round_Picker.Repositories
 
             return objSelectListItems;
         }
+
+        public string GetTea(int teaId)
+        {
+            string tea = objTeaPickerDbEntities.Teas.SingleOrDefault(x => x.TeaId == teaId).TeaName;
+
+            return tea;
+        }
+
+        public void DeleteTea(int teaId)
+        {
+            string tea = objTeaPickerDbEntities.Teas.SingleOrDefault(x => x.TeaId == teaId).TeaName;
+            tea.Remove(teaId);
+        }
     }
 }

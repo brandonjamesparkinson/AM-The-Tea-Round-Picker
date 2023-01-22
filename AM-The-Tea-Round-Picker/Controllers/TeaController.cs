@@ -1,4 +1,5 @@
 ﻿using AM_The_Tea_Round_Picker.Models;
+using AM_The_Tea_Round_Picker.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,51 +10,34 @@ namespace AM_The_Tea_Round_Picker.Controllers
 {
     public class TeaController : Controller
     {
-        private TeaPickerDbEntities objTeaPickerDbEntities;
+        private readonly ITeaRepository _teaRepository;
 
         public TeaController()
         {
-            objTeaPickerDbEntities = new TeaPickerDbEntities();
+            _teaRepository = new TeaRepository();
         }
 
         public ActionResult Index()
         {
-            var tea = objTeaPickerDbEntities.Teas;
+            var tea = _teaRepository.GetAll();
             return View(tea);
         }
 
-        public ActionResult CreateTea(Tea model)
-        {
-
-            return View();
-        }
-
-        [HttpPut]
-        public ActionResult EditTea(Tea model)
-        {
-
-            return View();
-        }
-
         [HttpGet]
-        public ActionResult GetTea(List<Tea> listofTea)
+        public ActionResult Create()
         {
-
             return View();
         }
 
-        [HttpGet]
-        public ActionResult GetTeaById(int id)
+        [HttpPost]
+        public ActionResult Create(Tea tea)
         {
-
-            return View();
-        }
-
-        [HttpDelete]
-        public ActionResult DeleteTea(int id)
-        {
-            
-            return View();
+            if (ModelState.IsValid)
+            {
+                _teaRepository.AddTea(tea);
+                return RedirectToAction("Index");
+            }
+            return View(tea);
         }
     }
 }

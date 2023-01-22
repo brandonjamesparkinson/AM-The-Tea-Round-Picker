@@ -157,6 +157,9 @@
       <DependentUpon>TeaPickerDbModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IPersonRepository.cs" />
+    <Compile Include="Repositories\ITeaMakerRepository.cs" />
+    <Compile Include="Repositories\ITeaRepository.cs" />
     <Compile Include="Repositories\PersonRepository.cs" />
     <Compile Include="Repositories\TeaMakerRepository.cs" />
     <Compile Include="Repositories\TeaRepository.cs" />
@@ -219,6 +222,8 @@
     <Content Include="Views\Person\Index.cshtml" />
     <Content Include="Views\Tea\Index.cshtml" />
     <Content Include="Views\Person\Create.cshtml" />
+    <Content Include="Views\Person\Delete.cshtml" />
+    <Content Include="Views\Tea\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

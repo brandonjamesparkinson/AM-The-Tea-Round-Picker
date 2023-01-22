@@ -1,4 +1,5 @@
 ﻿using AM_The_Tea_Round_Picker.Models;
+using AM_The_Tea_Round_Picker.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +10,16 @@ namespace AM_The_Tea_Round_Picker.Controllers
 {
     public class PersonController : Controller
     {
-        private TeaPickerDbEntities objTeaPickerDbEntities;
+        private readonly IPersonRepository _personRepository;
 
         public PersonController()
         {
-            objTeaPickerDbEntities = new TeaPickerDbEntities();
+            _personRepository = new PersonRepository();
         }
 
         public ActionResult Index()
         {
-            var people = objTeaPickerDbEntities.People;
+            var people = _personRepository.GetAll();
             return View(people);
         }
 
@@ -33,8 +34,7 @@ namespace AM_The_Tea_Round_Picker.Controllers
         {
             if (ModelState.IsValid)
             {
-                objTeaPickerDbEntities.People.Add(person);
-                objTeaPickerDbEntities.SaveChanges();
+                _personRepository.AddPerson(person);
                 return RedirectToAction("Index");
             }
             return View(person);
@@ -48,10 +48,10 @@ namespace AM_The_Tea_Round_Picker.Controllers
         //}
 
         [HttpDelete]
-        public ActionResult DeletePerson(int id)
+        public ActionResult DeletePerson(int personId)
         {
-
-            return View();
+            _personRepository.Delete(personId);
+            return RedirectToAction("Index");
         }
     }
 }

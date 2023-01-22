@@ -7,9 +7,9 @@ using System.Web.Mvc;
 
 namespace AM_The_Tea_Round_Picker.Repositories
 {
-
-    public class TeaRepository
+    public class TeaRepository : ITeaRepository
     {
+        //TODO : Refactor all mentions of tea into 'hot drinks' 
         private TeaPickerDbEntities objTeaPickerDbEntities;
 
         public TeaRepository()
@@ -32,17 +32,33 @@ namespace AM_The_Tea_Round_Picker.Repositories
             return objSelectListItems;
         }
 
-        public string GetTea(int teaId)
+        public IEnumerable<Tea> GetAll()
         {
-            string tea = objTeaPickerDbEntities.Teas.SingleOrDefault(x => x.TeaId == teaId).TeaName;
-
-            return tea;
+            return objTeaPickerDbEntities.Teas.ToList();
         }
 
-        public void DeleteTea(int teaId)
+        public Tea GetById(int teaId)
         {
-            string tea = objTeaPickerDbEntities.Teas.SingleOrDefault(x => x.TeaId == teaId).TeaName;
-            tea.Remove(teaId);
+            return objTeaPickerDbEntities.Teas.Find(teaId);
+        }
+
+        public void AddTea(Tea tea)
+        {
+            objTeaPickerDbEntities.Teas.Add(tea);
+            objTeaPickerDbEntities.SaveChanges();
+        }
+
+        //todo: edit tea (name etc)
+        //public void Update(Tea tea)
+        //{
+
+        //}
+
+        public void Delete(int id)
+        {
+            var tea = objTeaPickerDbEntities.Teas.Find(id);
+            objTeaPickerDbEntities.Teas.Remove(tea);
+            objTeaPickerDbEntities.SaveChanges();
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace AM_The_Tea_Round_Picker.Repositories
 {
-    public class PersonRepository
+    public class PersonRepository : IPersonRepository
     {
         private TeaPickerDbEntities objTeaPickerDbEntities;
 
@@ -31,11 +31,33 @@ namespace AM_The_Tea_Round_Picker.Repositories
             return objSelectListItems;
         }
 
-        public string GetPerson(int personId)
+        public IEnumerable<Person> GetAll()
         {
-            string person = objTeaPickerDbEntities.People.SingleOrDefault(x => x.PersonId == personId).PersonName;
+            return objTeaPickerDbEntities.People.ToList();
+        }
 
-            return person;
+        public Person GetById(int personId)
+        {
+            return objTeaPickerDbEntities.People.Find(personId);
+        }
+
+        public void AddPerson(Person person)
+        {
+            objTeaPickerDbEntities.People.Add(person);
+            objTeaPickerDbEntities.SaveChanges();
+        }
+
+        //todo: edit person (name etc)
+        //public void Update(Person person)
+        //{
+
+        //}
+
+        public void Delete(int id)
+        {
+            var person = objTeaPickerDbEntities.People.Find(id);
+            objTeaPickerDbEntities.People.Remove(person);
+            objTeaPickerDbEntities.SaveChanges();
         }
     }
 }

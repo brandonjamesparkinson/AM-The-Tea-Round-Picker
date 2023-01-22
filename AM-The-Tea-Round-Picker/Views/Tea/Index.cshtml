@@ -7,13 +7,13 @@
 <div class="jumbotron">
     <h2 style="color: #56002a !important;">Drinks Menu</h2>
     <p class="lead">Add or remove drinks.</p>
-    <img src="~/Images/tea-pot.png" / style="border-radius: 20px;">
+    <img src="~/Images/tea-pot.png" style="border-radius: 20px;">
 </div>
 
 <a href="@Url.Action("Create", "Tea")" class="btn btn-primary">Add Tea</a>
 @*todo : add delete*@ 
-<a href="@Url.Action("Edit", "Tea")" class="btn btn-primary">Edit Tea</a>
-<a href="@Url.Action("Delete", "Tea")" class="btn btn-danger">Remove Tea</a>
+<a href="@Url.Action("Edit", "Tea")" class="btn btn-primary disabled">Edit Tea</a>
+<a href="@Url.Action("Delete", "Tea")" class="btn btn-danger disabled">Remove Tea</a>
 
 
 <table class="table table-bordered">

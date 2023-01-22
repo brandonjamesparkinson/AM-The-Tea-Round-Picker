@@ -1,7 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using AM_The_Tea_Round_Picker.Models;
+using AM_The_Tea_Round_Picker.Repositories;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace The_Tea_Round_Picker.Test.RepositoryTests
 {
@@ -11,59 +10,24 @@ namespace The_Tea_Round_Picker.Test.RepositoryTests
     [TestClass]
     public class PersonRepositoryTest
     {
-        public PersonRepositoryTest()
+        //TODO : Proper mocking
+        [TestMethod]
+        public void AddPersonForTestAndGetPersonByIdAndThenDelete()
         {
-            //
-            // TODO: Add constructor logic here
-            //
+            var data = new Person { PersonId = 1, PersonName = "Paul" };
+            IPersonRepository repository = new PersonRepository();
+            repository.AddPerson(data);
+            var result = repository.GetById(data.PersonId);
+            Assert.AreEqual(data.PersonId, result.PersonId);
+            repository.Delete(data.PersonId);
         }
-
-        private TestContext testContextInstance;
-
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
-
-        #region Additional test attributes
-        //
-        // You can use the following additional attributes as you write your tests:
-        //
-        // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
-        // public static void MyClassInitialize(TestContext testContext) { }
-        //
-        // Use ClassCleanup to run code after all tests in a class have run
-        // [ClassCleanup()]
-        // public static void MyClassCleanup() { }
-        //
-        // Use TestInitialize to run code before running each test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
-        //
-        // Use TestCleanup to run code after each test has run
-        // [TestCleanup()]
-        // public void MyTestCleanup() { }
-        //
-        #endregion
 
         [TestMethod]
-        public void TestMethod1()
+
+        public void GetAllPeople()
         {
-            //
-            // TODO: Add test logic here
-            //
+            IPersonRepository repository = new PersonRepository();
+            Assert.IsNotNull(repository.GetAll());
         }
     }
 }
